@@ -26,3 +26,12 @@ async def create_todo(request: Request):
   todo = await request.json()
   fake_database.append(todo)
   return todo
+
+@app.patch("/todos/{id}")
+async def update_todo_by_id(id:int, request:Request):
+  updatetodo=await request.json()
+  for todo in fake_database:
+    if id==todo['id']:
+      todo.update(updatetodo)
+      return todo
+
