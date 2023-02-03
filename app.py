@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
 
@@ -35,9 +36,14 @@ async def update_todo_by_id(id:int, request:Request):
       todo.update(updatetodo)
       return todo
 
+x=0
 @app.delete("/todos/{id}")
 async def delete_todo_by_id(id:int, request:Request):
     for todo in fake_database:
       if id==todo['id']:
         fake_database.remove(todo)
+        x=1
         return "DELETED"
+    if x==0:
+      raise HTTPException(status_code=404, detail="Item not found")
+        
