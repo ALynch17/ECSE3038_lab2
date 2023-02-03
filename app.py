@@ -35,3 +35,9 @@ async def update_todo_by_id(id:int, request:Request):
       todo.update(updatetodo)
       return todo
 
+@app.delete("/todos/{id}")
+async def delete_todo_by_id(id:int, request:Request):
+    for todo in fake_database:
+      if id==todo['id']:
+        fake_database.remove(todo)
+        return "DELETED"
