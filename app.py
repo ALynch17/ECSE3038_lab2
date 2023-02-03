@@ -15,10 +15,10 @@ fake_database=[]
 @app.get("/todos")
 async def get_all_todos():
     return fake_database
-"""
+
 @app.post("/todos")
 async def create_todo(request: Request):
     todo = await request.json()
     fake_database.append(todo)
     return todo
-"""
+
