@@ -45,5 +45,5 @@ async def delete_todo_by_id(id:int, request:Request):
         x=1
         return "DELETED"
     if x==0:
-      raise HTTPException(status_code=404, detail="Item not found")
+      raise HTTPException(status_code=404, detail="ID not found")
         
